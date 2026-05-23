@@ -86,14 +86,16 @@ function HomePage() {
 
         <div className="px-5">
           <div className="text-center mb-10">
-            <div className="inline-block bg-gradient-to-br from-yellow-400 to-orange-500 text-white py-4 px-10 rounded-full text-2xl font-bold uppercase tracking-wider shadow-lg shadow-yellow-500/30 relative">
-              <span
-                style={{ textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}
-              >
-                <a href="https://github.com/DANG-PH/NgocRongOnline/releases/download/v1.0.0/NRO_HDG.zip">TẢI GAME</a>
-              </span>
-              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-400 rounded-full -z-10 animate-pulse opacity-80"></div>
-            </div>
+            <a href="https://github.com/DANG-PH/NgocRongOnline/releases/download/v1.0.0/NRO_HDG.zip">
+              <div className="inline-block bg-gradient-to-br from-yellow-400 to-orange-500 text-white py-4 px-10 rounded-full text-2xl font-bold uppercase tracking-wider shadow-lg shadow-yellow-500/30 relative">
+                <span
+                  style={{ textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}
+                >
+                  TẢI GAME
+                </span>
+                <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-400 rounded-full -z-10 animate-pulse opacity-80"></div>
+              </div>
+            </a>
           </div>
           
           <div className="flex justify-center gap-8 flex-wrap">

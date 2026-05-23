@@ -80,60 +80,71 @@ function ShopAcc() {
 
   if (loading)
     return (
-      <div className="min-h-screen flex items-center justify-center  bg-no-repeat bg-center bg-fixed bg-cover" style={{ backgroundImage: "url('/assets/br.jpg')" }}>
-        <div className="text-center">
-          <div className="animate-spin h-16 w-16 border-b-2 border-blue-500 mx-auto rounded-full"></div>
-          <p className="mt-4 text-gray-600">Đang tải thông tin...</p>
+      <div className="min-h-screen flex items-center justify-center bg-no-repeat bg-center bg-fixed bg-cover relative" style={{ backgroundImage: "url('/assets/br.jpg')" }}>
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div className="text-center relative z-10">
+          <div className="animate-spin h-16 w-16 border-b-2 border-blue-500 mx-auto rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
+          <p className="mt-4 text-gray-200">Đang tải thông tin...</p>
         </div>
       </div>
     );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 bg-no-repeat bg-center bg-fixed bg-cover" style={{ backgroundImage: "url('/assets/br.jpg')" }}>
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen py-8 px-4 bg-no-repeat bg-center bg-fixed bg-cover relative" style={{ backgroundImage: "url('/assets/br.jpg')" }}>
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-8 pt-4">
-          <h1 className="text-5xl font-black text-center mb-3 text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))' }}>Shop Bán Account</h1>
-          <p className="text-gray-100 font-semibold text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Chọn và mua account phù hợp với bạn</p>
+        <div className="text-center mb-10 border-b border-white/10 pb-8">
+          <span className="inline-block mb-3 px-4 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-semibold uppercase tracking-[0.2em]">
+            Mua bán tài khoản
+          </span>
+          <h1 className="text-4xl md:text-5xl font-black mb-3 text-transparent bg-clip-text bg-gradient-to-b from-amber-300 to-amber-500 uppercase tracking-wider drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]" style={{ filter: 'drop-shadow(0 0 18px rgba(251,191,36,0.4))' }}>
+            Shop Bán Account
+          </h1>
+          <p className="text-gray-300 font-medium text-base md:text-lg drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+            Chọn và mua account phù hợp với bạn
+          </p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          <div className="mb-6 bg-red-500/10 border border-red-500/30 text-red-300 px-4 py-3 rounded-lg backdrop-blur-sm">
             {error}
           </div>
         )}
 
         {/* Account Grid */}
         {!isLogged ? (
-          <div className="text-center py-20 bg-black/50 backdrop-blur-sm rounded-2xl border border-white/10 shadow-xl">
+          <div className="text-center py-20 bg-black/60 backdrop-blur-md rounded-2xl border border-white/10 shadow-xl">
             <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Vui lòng đăng nhập!</h2>
           </div>
         ) : accounts.length === 0 ? (
-          <div className="text-center py-20 bg-black/50 backdrop-blur-sm rounded-2xl border border-white/10 shadow-xl">
-            <div className="text-6xl mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">🛒</div>
+          <div className="text-center py-20 bg-black/60 backdrop-blur-md rounded-2xl border border-white/10 shadow-xl">
+            <div className="text-6xl mb-4 opacity-70">🛒</div>
             <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Không có account nào</h2>
-            <p className="text-gray-200 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Hiện tại chưa có account nào để bán</p>
+            <p className="text-gray-300 font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Hiện tại chưa có account nào để bán</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {accounts.map((account) => (
               <div
                 key={account.id}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="group bg-black/60 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:bg-black/70 hover:border-white/20 hover:-translate-y-1.5 hover:shadow-[0_0_25px_rgba(59,130,246,0.2)]"
               >
                 {/* Image */}
-                <div className="relative h-48 bg-gray-200">
+                <div className="relative h-48 bg-black/40 overflow-hidden">
                   <img
                     src={account.url}
                     alt={account.description}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect fill="%23e5e7eb" width="300" height="200"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%239ca3af" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
+                      (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect fill="%23262626" width="300" height="200"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23737373" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
                     }}
                   />
                   <div className="absolute top-2 right-2">
-                    <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                    <span className="bg-green-500/20 text-green-300 border border-green-500/40 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm shadow-[0_0_10px_rgba(34,197,94,0.3)]">
                       ACTIVE
                     </span>
                   </div>
@@ -141,14 +152,14 @@ function ShopAcc() {
 
                 {/* Content */}
                 <div className="p-4">
-                  <p className="text-gray-700 text-sm mb-3 line-clamp-2 min-h-[40px]">
+                  <p className="text-gray-300 text-sm mb-3 line-clamp-2 min-h-[40px] leading-relaxed">
                     {account.description}
                   </p>
 
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <p className="text-xs text-gray-500">Giá</p>
-                      <p className="text-2xl font-bold text-blue-600">
+                      <p className="text-[11px] text-gray-500 uppercase tracking-wide">Giá</p>
+                      <p className="text-2xl font-black text-blue-400 drop-shadow-[0_0_8px_rgba(96,165,250,0.6)]">
                         {account.price.toLocaleString('vi-VN')} ₫
                       </p>
                     </div>
@@ -161,7 +172,7 @@ function ShopAcc() {
                   {/* View Detail Button */}
                   <button
                     onClick={() => handleViewDetail(account)}
-                    className="w-full py-3 rounded-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+                    className="w-full py-3 rounded-lg font-semibold border border-blue-500/50 bg-blue-500/20 text-blue-200 hover:bg-blue-500/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all duration-300"
                   >
                     Xem Chi Tiết
                   </button>
